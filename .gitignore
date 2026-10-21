@@ -38,3 +38,17 @@ _staging/
 # 外部工具运行时留下的中间产物
 .codex-*
 .task-prompt.txt
+
+# 密钥与敏感配置（2026-10-21 补充：公开仓库防泄露）
+.env
+.env.*
+*.env
+secrets.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa*
+id_ed25519*
+.gh-token
