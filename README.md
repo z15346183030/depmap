@@ -1,5 +1,26 @@
 # depmap
 
+**Module dependency graphs for Python — with cycles and dead code called out.** Zero dependencies, single file, standard-library `ast` only. No tree-sitter, no repo config, no IDE switch.
+
+```
+$ python depmap.py path/to/asyncio
+modules: 33    internal deps: 129
+cycles: 1
+  asyncio.tasks → asyncio.timeouts → asyncio.tasks
+entry modules (depended on, depending on nothing): 8
+```
+
+Node IDs are full relative paths, so two `layout.py` files in different folders never collide. Relative imports are never fuzzy-matched, so it won't invent cycles that don't exist. Files that fail to parse are reported, never silently dropped.
+
+```bash
+python depmap.py . --format mermaid   # paste into GitHub / Notion / Typora
+python depmap.py . --check            # exit 1 on a cycle — usable in CI
+```
+
+<sub>中文说明见下方 · Chinese documentation below</sub>
+
+---
+
 扫描 Python 项目，画出模块之间的依赖关系，顺带找出循环依赖和孤立模块。
 
 **零依赖、单文件、只用标准库 `ast`。** 不装 tree-sitter，不写你的仓库配置，不要求你换个 IDE。
